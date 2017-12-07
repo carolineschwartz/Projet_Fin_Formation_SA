@@ -29,9 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_above="@+id/btnFrom"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="13dp">
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="10dp"
+        android:layout_above="@+id/btnForm"
+        android:layout_alignParentEnd="true">
 
         <LinearLayout
             android:id="@+id/layout3"
@@ -52,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:text="dupond"
                 tools:text="nom" />
         </LinearLayout>
 
@@ -75,6 +77,7 @@
                 android:layout_weight="12"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:text="paul"
                 tools:text="Prenom" />
         </LinearLayout>
 
@@ -97,7 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.09"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:text="12/01/1980" />
 
         </LinearLayout>
 
@@ -112,7 +116,7 @@
                 android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:text="Taille(cm)"
-                tools:text="Taille(cm)" />
+                tools:text="Taille (cm)" />
 
             <EditText
                 android:id="@+id/editTxtTaille"
@@ -121,6 +125,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:text="165"
                 tools:text="Taille" />
         </LinearLayout>
 
@@ -134,8 +139,8 @@
                 android:id="@+id/textView7"
                 android:layout_width="95dp"
                 android:layout_height="wrap_content"
-                android:text="Poids(kg)"
-                tools:text="Poids(kg)" />
+                android:text="Poids (kg)"
+                tools:text="Poids (kg)" />
 
             <EditText
                 android:id="@+id/editTxtPoids"
@@ -144,6 +149,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:text="50"
                 tools:text="Poids" />
         </LinearLayout>
 
@@ -167,6 +173,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:text="paul77"
                 tools:text="username" />
         </LinearLayout>
 
@@ -211,7 +218,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="toto"
+                tools:text="toto" />
         </LinearLayout>
 
         <LinearLayout
@@ -233,13 +242,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="toto" />
         </LinearLayout>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnFrom"
+        android:id="@+id/btnForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valider"
