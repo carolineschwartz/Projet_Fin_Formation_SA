@@ -104,11 +104,12 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
             } else {
 
-//                Type listType = new TypeToken<ArrayList<Sport>>() {
-//                }.getType();
+               Type listType = new TypeToken<ArrayList<Sport>>() {
+                }.getType();
                 mListe = new Gson().fromJson(res, listType);
 
                 Log.d("CODE", "" + mListe);
+                Log.d("CODE", "" + res);
 
                 BtnSport1.setText(mListe.get(0).getNom());
                 BtnSport2.setText(mListe.get(1).getNom());

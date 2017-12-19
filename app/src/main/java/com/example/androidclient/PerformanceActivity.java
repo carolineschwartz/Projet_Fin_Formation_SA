@@ -21,6 +21,8 @@ import com.example.androidclient.modele.Sport;
 import com.example.androidclient.modele.Utilisateur;
 import com.google.gson.Gson;
 
+import java.util.Date;
+
 
 public class PerformanceActivity extends AppCompatActivity {
 
@@ -50,6 +52,7 @@ public class PerformanceActivity extends AppCompatActivity {
 //    String datetime = dateformat.format(c.getTime());
 //        System.out.println(datetime);
 
+   // Date getTimestamp ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

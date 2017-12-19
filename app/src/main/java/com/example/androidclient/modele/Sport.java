@@ -18,11 +18,6 @@ public class Sport {
 
     public Sport(){}
 
-    public Sport(Long id,String nom) {
-        this.id=id;
-        this.nom = nom;
-    }
-
 
     public Sport(Long id, String nom, String iconeUrl, int calorie) {
         this.id=id;
@@ -69,8 +64,8 @@ public class Sport {
 
     @Override
     public String toString() {
-        return "Sport{" +
-                "nom='" + nom + '\'' +
+        return "Sport{id='"+ id + '\''+
+                ", nom='" + nom + '\'' +
                 ", iconeUrl='" + iconeUrl + '\'' +
                 ", calorie=" + calorie +
                 '}';
