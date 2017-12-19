@@ -18,6 +18,7 @@ import com.example.androidclient.http.AsyncResponse;
 import com.example.androidclient.http.HttpAsynTask;
 import com.example.androidclient.http.HttpAsynTaskSport;
 import com.example.androidclient.modele.Sport;
+import com.example.androidclient.modele.SportAdapter;
 import com.example.androidclient.modele.Utilisateur;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -33,17 +34,19 @@ public class ProfilUtilisateur extends AppCompatActivity {
     private TextView txtViewNom, txtViewPrenom;
     private Button btnIMC, btnClose;
     private Button BtnSport1, BtnSport2, BtnSport3;
+    private SportAdapter adapter;
+
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
+    private String base_url = "http://test.legionnaire.ovh:8080";
 
     private ArrayList<Sport> sportList;
     private Sport sport;
 
     Type listType = new TypeToken<ArrayList<Sport>>() {
     }.getType();
-    List<Sport> mListe;
+    ArrayList<Sport> mListe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
         txtViewNom = (TextView) findViewById(R.id.txtViewNom);
         txtViewPrenom = (TextView) findViewById(R.id.txtViewPrenom);
+        adapter = new SportAdapter(this, mListe);
 
 
         btnIMC = (Button) findViewById(R.id.btnIMC);
@@ -109,6 +113,13 @@ public class ProfilUtilisateur extends AppCompatActivity {
                 mListe = new Gson().fromJson(res, listType);
 
                 Log.d("CODE", "" + mListe);
+
+
+
+
+                ListView itemsListView = (ListView) findViewById(R.id.LstView);
+                itemsListView.setAdapter(adapter);
+
 
                 BtnSport1.setText(mListe.get(0).getNom());
                 BtnSport2.setText(mListe.get(1).getNom());
