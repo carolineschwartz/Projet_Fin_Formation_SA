@@ -106,6 +106,7 @@ public class HttpAsynTask extends AsyncTask<String, Void, String> {
         }
 
         Log.d("CODE", "" +  result.toString());
+
         if(result == null) {
             return "";
         }

@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -40,6 +41,9 @@ public class PerformanceActivity extends AppCompatActivity {
     private long timeFinal = 0;
     private boolean running = false;
     private double caloriesPerdues = 0;
+
+
+
 
 //    Calendar c = Calendar.getInstance();
 //    SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss aa");
@@ -76,6 +80,7 @@ public class PerformanceActivity extends AppCompatActivity {
             String sportGson = extras.getString("sportGson");
             utilisateur = gs.fromJson(userGsonSting, Utilisateur.class);
             sport = gs.fromJson(sportGson, Sport.class);
+
             txtViewNom.setText(utilisateur.getNom());
             txtViewPrenom.setText(utilisateur.getPrenom());
             txtViewNomSport.setText(sport.getNom());
@@ -88,12 +93,12 @@ public class PerformanceActivity extends AppCompatActivity {
     private View.OnClickListener bClickListenerCalculCalorie = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             Log.d("CODE", "" + time/1000);
             Log.d("CODE", "" + caloriesPerdues);
             //Nb de calories perdues par heure
             caloriesPerdues = (sport.getCalorie() * (time / 1000))/3600;
             txtViewCalorieCalculee.setText(String.valueOf(caloriesPerdues));
-
 
         }
     };
@@ -116,6 +121,7 @@ public class PerformanceActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             // Création  de l'activite
+
             timeFinal = (time / 1000);
             if(caloriesPerdues==0){
                 caloriesPerdues = (sport.getCalorie() * (time / 1000))/3600;
@@ -126,12 +132,14 @@ public class PerformanceActivity extends AppCompatActivity {
 
             activite = new Activite(timeFinal, idDate.getText().toString(), sport, utilisateur,caloriesPerdues);
 
+
             Toast.makeText(PerformanceActivity.this, "Sauvegarde en cours", Toast.LENGTH_SHORT).show();
             String requestUrl = base_url + "/Projet_Fin_Formation/api/activiteWebService"; // params[0]
 
             String method = "POST"; // params[1]
 
-            System.out.println("activite            : " + activite);
+            Log.d("CODE", "" + activite);
+
             try {
 
                 new HttpAsynTask(responseAvailable).execute(requestUrl,
@@ -162,9 +170,11 @@ public class PerformanceActivity extends AppCompatActivity {
                     }
                 });
                 alertDialog.show();
+
             } else {
                 Toast.makeText(PerformanceActivity.this, "Sauvegarde réussie", Toast.LENGTH_SHORT).show();
             }
+
         }
     };
 

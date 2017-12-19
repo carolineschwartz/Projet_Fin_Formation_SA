@@ -14,6 +14,7 @@ public class Activite {
     private Double caloriePerdues;
 
 
+
     // Constructeurs
 
 
@@ -48,7 +49,6 @@ public class Activite {
 
 
     // getter et setter
-
 
     public Sport getSport() {
         return sport;

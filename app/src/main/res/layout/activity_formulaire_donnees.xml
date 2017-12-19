@@ -209,6 +209,7 @@
             android:inputType="textEmailAddress"
             android:text="dup@yahoo.fr"
             tools:text="dup@yahoo.fr" />
+
     </LinearLayout>
 
     <LinearLayout
