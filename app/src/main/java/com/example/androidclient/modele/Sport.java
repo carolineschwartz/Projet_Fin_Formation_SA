@@ -9,19 +9,37 @@ import java.util.List;
 
 public class Sport {
 
+    private Long id;
     private String nom;
     private String iconeUrl;
-    private List<Video> videos = new ArrayList<>();
+    private int calorie;
 
-    public Sport(String nom, String iconeUrl, List<Video> videos) {
+
+    public Sport(){}
+
+    public Sport(Long id,String nom) {
+        this.id=id;
+        this.nom = nom;
+    }
+
+    public Sport(Long id, String nom, String iconeUrl, int calorie) {
+        this.id=id;
         this.nom = nom;
         this.iconeUrl = iconeUrl;
-        this.videos = videos;
+        this.calorie = calorie;
     }
 
 
     // getter et setter
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;
@@ -39,21 +57,20 @@ public class Sport {
         this.iconeUrl = iconeUrl;
     }
 
-    public List<Video> getVideos() {
-        return videos;
+    public int getCalorie() {
+        return calorie;
     }
 
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
+    public void setCalorie(int calorie) {
+        this.calorie = calorie;
     }
-
 
     @Override
     public String toString() {
         return "Sport{" +
                 "nom='" + nom + '\'' +
                 ", iconeUrl='" + iconeUrl + '\'' +
-                ", videos=" + videos +
+                ", calorie=" + calorie +
                 '}';
     }
 }

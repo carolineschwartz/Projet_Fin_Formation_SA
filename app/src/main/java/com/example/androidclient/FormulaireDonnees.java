@@ -1,38 +1,45 @@
 package com.example.androidclient;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.androidclient.http.AsyncResponse;
+import com.example.androidclient.http.HttpAsynTask;
+import com.example.androidclient.modele.Utilisateur;
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 
 public class FormulaireDonnees extends AppCompatActivity {
 
-    private Button btnForm;
+    private Button btnForm, btnRetour;
     private EditText editTxtNom, editTxtPrenom, editTxtUsername, editTxtMail;
     private EditText editTxtDateNaiss, editTxtTaille, editTxtPoids;
     private EditText editTxtMdp, editTxtMdpConf;
 
-    JSONObject utilisateur = new JSONObject();
+    private Utilisateur utilisateur;
+    private Gson gs = new Gson();
+    private String base_url = "http://192.168.137.1:8080";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulaire_donnees);
+
+        // First declare an intent
+        final Intent intent = new Intent().setClass(this, ProfilUtilisateur.class);
 
         editTxtNom = (EditText) findViewById(R.id.editTxtNom);
         editTxtPrenom = (EditText) findViewById(R.id.editTxtPrenom);
@@ -44,108 +51,123 @@ public class FormulaireDonnees extends AppCompatActivity {
         editTxtMdp = (EditText) findViewById(R.id.editTxtMdp);
         editTxtMdpConf = (EditText) findViewById(R.id.editTxtMdpConf);
 
+        btnRetour = (Button) findViewById(R.id.btnRetour);
         btnForm = (Button) findViewById(R.id.btnForm);
-        btnForm.setOnClickListener(bClick2ListenerFormulaire);
+        //  btnForm.setOnClickListener(bClick2ListenerFormulaire);
+
+        btnForm.setOnClickListener(formClickListener);
+        btnRetour.setOnClickListener(retourClickListener);
 
     }
 
+    private View.OnClickListener retourClickListener = new View.OnClickListener() {
 
-    private View.OnClickListener bClick2ListenerFormulaire = new View.OnClickListener() {
         @Override
+
         public void onClick(View v) {
-            if (editTxtMdp.getText().toString().equals((editTxtMdpConf.getText().toString()))) {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
 
-                // Creation de l'objet JSON
+    };
 
-                try {
-                    utilisateur.put("nom", editTxtNom.getText().toString());
-                    utilisateur.put("prenom", editTxtPrenom.getText().toString());
-                    utilisateur.put("email", editTxtMail.getText().toString());
-                    utilisateur.put("username", editTxtUsername.getText().toString());
-                    utilisateur.put("passWord", editTxtMdp.getText().toString());
-                    utilisateur.put("dateNaiss", editTxtDateNaiss.getText().toString());
-                    utilisateur.put("taille", editTxtTaille.getText().toString());
-                    utilisateur.put("poids", editTxtPoids.getText().toString());
+    private View.OnClickListener formClickListener = new View.OnClickListener() {
 
+        @Override
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(utilisateur);
+        public void onClick(View v) {
 
-                // Connexion serveur et appel requete POST
-                String url = "http://192.168.14.236:8080/Projet_Fin_Formation/api/modele.utilisateur";
-                new HttpAsyncTask().execute(url,utilisateur.toString());
+            Toast.makeText(FormulaireDonnees.this, "Inscription en cours", Toast.LENGTH_SHORT).show();
+            String requestUrl = base_url + "/Projet_Fin_Formation/api/utilisateurCreate"; // params[0]
+            String method = "POST"; // params[1]
 
+            if (editTxtMail.getText().toString().isEmpty()) {
+                AlertDialog alertDialog = new AlertDialog.Builder(FormulaireDonnees.this).create();
+                alertDialog.setTitle("Erreur");
+                alertDialog.setMessage("Email non saisie");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.show();
             } else {
+                if (editTxtMdp.getText().toString().equals((editTxtMdpConf.getText().toString()))) {
 
-                Intent i = new Intent(v.getContext(), FormulaireDonnees.class);
-                startActivity(i);
+                    utilisateur = new Utilisateur(0L, editTxtNom.getText().toString(), editTxtPrenom.getText().toString(),
+                            editTxtMail.getText().toString(), editTxtUsername.getText().toString(),
+                            editTxtMdp.getText().toString(), editTxtDateNaiss.getText().toString(),
+                            Double.parseDouble(editTxtTaille.getText().toString()),
+                            Double.parseDouble(editTxtPoids.getText().toString()));
+
+                    try {
+
+                        new HttpAsynTask(responseAvailable).execute(requestUrl,
+                                method, gs.toJson(utilisateur));
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                } else {
+                    AlertDialog alertDialog = new AlertDialog.Builder(FormulaireDonnees.this).create();
+                    alertDialog.setTitle("Erreur");
+                    alertDialog.setMessage("Les 2 mots de passe sont différents");
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alertDialog.show();
+                }
+
             }
         }
     };
 
 
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+    // Ici j'implemente un class anonyme qui implemente directement
+    // l'interface AsyncResponseView
+    private AsyncResponse responseAvailable = new AsyncResponse() {
 
-
+        // la méthode httpTaskFinished est appelée à partir du onPostResult de
+        // l'async task
         @Override
-        protected String doInBackground(String... params) {
-            String path = params[0];
-            URL url = null;
-            HttpURLConnection connection = null;
-            StringBuilder result = null;
+        public void httpTaskFinished(String res) {
 
-            try {
-                url = new URL(path);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-               // connection.setConnectTimeout(10000);
-               // connection.setReadTimeout(10000);
-                connection.setRequestProperty("Content-Type", "application/json");
-
-                OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-                out.write(utilisateur.toString());
-                out.close();
-                connection.connect();
-
-                int httpResult = connection.getResponseCode();
-                result = new StringBuilder();
-                Log.d("CODE", "" + httpResult);
-
-                // Je vérifie que la requete a bien eu lieu
-                if (200 <= httpResult && httpResult < 300) {
-                    // Je recupère la réponse de la requete
-                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line = null;
-                    while ((line = br.readLine()) != null) {
-                        result.append(line);
+            if (res.isEmpty()) {
+                AlertDialog alertDialog = new AlertDialog.Builder(FormulaireDonnees.this).create();
+                alertDialog.setTitle("Erreur");
+                alertDialog.setMessage("L'inscription a échoué, recommencez svp");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
-                    br.close();
-                }
+                });
+                alertDialog.show();
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (connection != null) {
-                    connection.disconnect();
-                }
+            } else if (gs.fromJson(res, Utilisateur.class).getId() == 0) {
+                AlertDialog alertDialog = new AlertDialog.Builder(FormulaireDonnees.this).create();
+                alertDialog.setTitle("Erreur");
+                alertDialog.setMessage("L'émail existe déja, recommencez svp");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+            } else {
+
+                Intent i = new Intent(getBaseContext(), ProfilUtilisateur.class);
+                i.putExtra("userGsonSting", res);
+                startActivity(i);
             }
 
-            if (result == null) {
-                return "";
-            }
-            return result.toString();
-
         }
+    };
 
-        @Override
-        protected void onPostExecute(String result) {
-            System.out.println(result);
-
-        }
-    }
 }
+
+
 

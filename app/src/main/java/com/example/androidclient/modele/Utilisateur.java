@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Utilisateur {
 
+    private Long id;
     private String nom;
     private String prenom;
     private String email;
@@ -38,6 +39,19 @@ public class Utilisateur {
         this.listAmi = listAmi;
     }
 
+    public Utilisateur(Long id, String nom, String prenom, String email, String username, String passWord,
+                       String dateNaiss, double taille, double poids) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.username = username;
+        this.passWord = passWord;
+        this.dateNaiss = dateNaiss;
+        this.taille = taille;
+        this.poids = poids;
+    }
+
     public Utilisateur(String nom, String prenom, String email, String username, String passWord,
                        String dateNaiss, double taille, double poids) {
         this.nom = nom;
@@ -50,7 +64,21 @@ public class Utilisateur {
         this.poids = poids;
     }
 
+    public Utilisateur(String email, String passWord) {
+        this.email = email;
+        this.passWord = passWord;
+    }
+
     // getter, setter
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -130,6 +158,13 @@ public class Utilisateur {
     public void setListAmi(List<Utilisateur> listAmi) {
         this.listAmi = listAmi;
     }
+
+
+    // Calcul IMC (m et kg)
+    public double calculImc(double taille, double poids){
+        return(poids/(Math.pow((taille/100),2)));
+    }
+
 
     @Override
     public String toString() {
