@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.androidclient.FormulaireDonnees;
 import com.example.androidclient.PerformanceActivity;
+import com.example.androidclient.ProfilUtilisateur;
 import com.example.androidclient.R;
 
 import java.util.ArrayList;
@@ -65,15 +66,20 @@ public class SportAdapter extends BaseAdapter {
 
     // public class TodoAdapter extends BaseAdapter implements Filterable {
 
+    private TextView text_view_sport_name;
+    private Button btnNomSport, btnVideoSport;
 
     private ArrayList<Sport> sportList;
-
+    private Sport currentSport;
+    private Gson gs = new Gson();
+    private Utilisateur utilisateur;
 
     private Context context;
 
-    public SportAdapter(Context context, ArrayList<Sport> list) {
+    public SportAdapter(Context context, ArrayList<Sport> list, Utilisateur utilisateur ) {
         this.context = context;
         this.sportList = list;
+        this.utilisateur=utilisateur;
     }
 
     // Ajouter un sport dans la liste
@@ -120,27 +126,31 @@ public class SportAdapter extends BaseAdapter {
                     inflate(R.layout.row_sport, parent, false);
         }
 
-        // Je récupère quel t odo on est entrain d'afficher
-        final Sport currentSport = (Sport) getItem(position);
+        // Je récupère le sport on est entrain d'afficher
+        currentSport = (Sport) getItem(position);
+
 
         // Ici je dois "remplir" les élements graphiques de mon row_todo
 
-        Button btnNomSport = (Button) linearLayout.findViewById(R.id.btnNomSport);
+        btnNomSport = (Button) linearLayout.findViewById(R.id.btnNomSport);
         btnNomSport.setOnClickListener(bClickListenerSport);
-        btnNomSport.setText(currentSport.getNom());
-        Button btnVideoSport = (Button) linearLayout.findViewById(R.id.btnVideoSport);
+        btnNomSport.setText("Performances");
+        btnVideoSport = (Button) linearLayout.findViewById(R.id.btnVideoSport);
         btnVideoSport.setOnClickListener(bClicListenerVideo);
-        btnVideoSport.setText("Video "+currentSport.getNom());
-
-
+        btnVideoSport.setText("Videos");
+        text_view_sport_name= (TextView) linearLayout.findViewById(R.id.text_view_sport_name);
+        text_view_sport_name.setText(currentSport.getNom());
 
         return linearLayout;
     }
+
+
     private View.OnClickListener bClickListenerSport = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             Intent i = new Intent(v.getContext(), PerformanceActivity.class);
+            i.putExtra("userGsonString", gs.toJson(utilisateur));
+            i.putExtra("sportGson", gs.toJson(currentSport));
             v.getContext().startActivity(i);
         }
     };
@@ -148,8 +158,8 @@ public class SportAdapter extends BaseAdapter {
     private View.OnClickListener bClicListenerVideo = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
-
             Intent i = new Intent(view.getContext(),VideoActivity.class);
+            i.putExtra("sportGson", gs.toJson(currentSport));
             view.getContext().startActivity(i);
         }
     };

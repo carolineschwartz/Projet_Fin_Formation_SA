@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidClient.iml" filepath="$PROJECT_DIR$/AndroidClient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Projet_Fin_Formation_SA.iml" filepath="$PROJECT_DIR$/Projet_Fin_Formation_SA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\HB\AndroidStudioProjects\AndroidClient\Projet_Fin_Formation_SA.iml" filepath="C:\Users\HB\AndroidStudioProjects\AndroidClient\Projet_Fin_Formation_SA.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

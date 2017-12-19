@@ -160,7 +160,7 @@ public class FormulaireDonnees extends AppCompatActivity {
             } else {
 
                 Intent i = new Intent(getBaseContext(), ProfilUtilisateur.class);
-                i.putExtra("userGsonSting", res);
+                i.putExtra("userGsonString", res);
                 startActivity(i);
             }
 

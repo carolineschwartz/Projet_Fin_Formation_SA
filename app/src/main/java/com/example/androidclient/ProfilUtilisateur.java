@@ -34,15 +34,16 @@ public class ProfilUtilisateur extends AppCompatActivity {
     private TextView txtViewNom, txtViewPrenom;
     private Button btnIMC, btnClose;
     private Button BtnSport1, BtnSport2, BtnSport3;
-    private SportAdapter adapter;
+    private ListView itemsListView;
 
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://test.legionnaire.ovh:8080";
+    private String base_url = "http://192.168.137.1:8080";
 
     private ArrayList<Sport> sportList;
     private Sport sport;
+    private SportAdapter adapter;
 
     Type listType = new TypeToken<ArrayList<Sport>>() {
     }.getType();
@@ -55,8 +56,7 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
         txtViewNom = (TextView) findViewById(R.id.txtViewNom);
         txtViewPrenom = (TextView) findViewById(R.id.txtViewPrenom);
-        adapter = new SportAdapter(this, mListe);
-
+        itemsListView = (ListView) findViewById(R.id.itemsListView);
 
         btnIMC = (Button) findViewById(R.id.btnIMC);
         btnIMC.setOnClickListener(bClickListenerIMC);
@@ -65,20 +65,20 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String userGsonSting = extras.getString("userGsonSting");
-            utilisateur = gs.fromJson(userGsonSting, Utilisateur.class);
+            String userGsonString = extras.getString("userGsonString");
+            utilisateur = gs.fromJson(userGsonString, Utilisateur.class);
             txtViewNom.setText(utilisateur.getNom());
             txtViewPrenom.setText(utilisateur.getPrenom());
         }
 
-        BtnSport1 = (Button) findViewById(R.id.BtnSport1);
+        /*BtnSport1 = (Button) findViewById(R.id.BtnSport1);
         BtnSport1.setOnClickListener(bClickListenerSport);
 
         BtnSport2 = (Button) findViewById(R.id.BtnSport2);
         BtnSport2.setOnClickListener(bClickListenerSport);
 
         BtnSport3 = (Button) findViewById(R.id.BtnSport3);
-        BtnSport3.setOnClickListener(bClickListenerSport);
+        BtnSport3.setOnClickListener(bClickListenerSport);*/
 
 
         // Recuperation de la liste des sport dans la  base de données
@@ -112,19 +112,15 @@ public class ProfilUtilisateur extends AppCompatActivity {
                 }.getType();
                 mListe = new Gson().fromJson(res, listType);
 
+                adapter = new SportAdapter(ProfilUtilisateur.this, mListe,utilisateur);
+                itemsListView.setAdapter(adapter);
+
                 Log.d("CODE", "" + mListe);
                 Log.d("CODE", "" + res);
 
-
-
-
-                ListView itemsListView = (ListView) findViewById(R.id.LstView);
-                itemsListView.setAdapter(adapter);
-
-
-                BtnSport1.setText(mListe.get(0).getNom());
+              /*  BtnSport1.setText(mListe.get(0).getNom());
                 BtnSport2.setText(mListe.get(1).getNom());
-                BtnSport3.setText(mListe.get(2).getNom());
+                BtnSport3.setText(mListe.get(2).getNom());*/
 
             }
 
@@ -140,8 +136,9 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
         }
     };
+
     // Sport = course à pied, ouverture de l'activité
-    private View.OnClickListener bClickListenerSport = new View.OnClickListener() {
+/*    private View.OnClickListener bClickListenerSport = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(v.getContext(), PerformanceActivity.class);
@@ -160,7 +157,7 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
             startActivity(i);
         }
-                };
+                };*/
 
 
 

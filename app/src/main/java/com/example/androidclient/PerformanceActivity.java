@@ -79,9 +79,9 @@ public class PerformanceActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String userGsonSting = extras.getString("userGsonSting");
+            String userGsonString = extras.getString("userGsonString");
             String sportGson = extras.getString("sportGson");
-            utilisateur = gs.fromJson(userGsonSting, Utilisateur.class);
+            utilisateur = gs.fromJson(userGsonString, Utilisateur.class);
             sport = gs.fromJson(sportGson, Sport.class);
 
             txtViewNom.setText(utilisateur.getNom());

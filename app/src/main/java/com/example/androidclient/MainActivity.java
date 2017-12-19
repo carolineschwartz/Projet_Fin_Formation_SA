@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
 
                 Intent i = new Intent(getBaseContext(), ProfilUtilisateur.class);
-                i.putExtra("userGsonSting",res );
+                i.putExtra("userGsonString",res );
                 startActivity(i);
             }
 
