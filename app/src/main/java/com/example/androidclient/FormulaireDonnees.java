@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.androidclient.GlobalVariables.getApp_name;
+
 
 public class FormulaireDonnees extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class FormulaireDonnees extends AppCompatActivity {
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
+    private String base_url = GlobalVariables.getBaseUrl();
 
 
     @Override
@@ -78,7 +80,7 @@ public class FormulaireDonnees extends AppCompatActivity {
         public void onClick(View v) {
 
             Toast.makeText(FormulaireDonnees.this, "Inscription en cours", Toast.LENGTH_SHORT).show();
-            String requestUrl = base_url + "/Projet_Fin_Formation/api/utilisateurCreate"; // params[0]
+            String requestUrl = base_url + getApp_name()+"api/utilisateurCreate"; // params[0]
             String method = "POST"; // params[1]
 
             if (editTxtMail.getText().toString().isEmpty()) {

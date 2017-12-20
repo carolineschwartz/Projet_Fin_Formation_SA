@@ -2,6 +2,7 @@ package com.example.androidclient;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.constraint.solver.Goal;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import com.example.androidclient.http.HttpAsynTask;
 import com.example.androidclient.modele.Utilisateur;
 import com.google.gson.Gson;
 
+import static com.example.androidclient.GlobalVariables.getApp_name;
+
 public class ImcFormulaire extends AppCompatActivity {
 
     private TextView txtViewNom, txtViewPrenom, txtViewImc;
@@ -24,7 +27,7 @@ public class ImcFormulaire extends AppCompatActivity {
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
+    private String base_url = GlobalVariables.getBaseUrl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +83,7 @@ public class ImcFormulaire extends AppCompatActivity {
 
         Toast.makeText(ImcFormulaire.this, "Sauvegarde en cours", Toast.LENGTH_SHORT).show();
 
-        String requestUrl = base_url + "/Projet_Fin_Formation/api/utilisateurCreate"; // params[0]
+        String requestUrl = base_url + getApp_name()+"api/utilisateurCreate"; // params[0]
         String method = "PUT"; // params[1]
 
         try {

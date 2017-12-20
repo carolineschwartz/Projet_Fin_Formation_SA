@@ -16,6 +16,9 @@ import com.example.androidclient.http.AsyncResponse;
 import com.example.androidclient.http.HttpAsynTask;
 import com.example.androidclient.modele.Utilisateur;
 import com.google.gson.Gson;
+import com.example.androidclient.GlobalVariables;
+
+import static com.example.androidclient.GlobalVariables.getApp_name;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
+    //private String base_url = "http://192.168.137.1:8080";
+    private String base_url = GlobalVariables.getBaseUrl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            String requestUrl = base_url + "/Projet_Fin_Formation/api/utilisateurPassWord"; // params[0]
+            String requestUrl = base_url + getApp_name()+"api/webServiceUtilisateur/findByMail"; // params[0]
             String method = "POST"; // params[1]
 
             Toast.makeText(MainActivity.this, "Connexion en cours", Toast.LENGTH_SHORT).show();
