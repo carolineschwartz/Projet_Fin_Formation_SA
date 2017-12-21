@@ -32,14 +32,13 @@ import java.util.List;
 public class ProfilUtilisateur extends AppCompatActivity {
 
     private TextView txtViewNom, txtViewPrenom;
-    private Button btnIMC, btnClose;
+    private Button btnIMC, btnListePerf, btnClose;
     private Button BtnSport1, BtnSport2, BtnSport3;
     private ListView itemsListView;
 
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
 
     private ArrayList<Sport> sportList;
     private Sport sport;
@@ -60,6 +59,10 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
         btnIMC = (Button) findViewById(R.id.btnIMC);
         btnIMC.setOnClickListener(bClickListenerIMC);
+
+        btnListePerf = (Button) findViewById(R.id.btnListePerf);
+        btnListePerf.setOnClickListener(bClickListenerbtnListePerf);
+
         btnClose = (Button) findViewById(R.id.btnClose);
         btnClose.setOnClickListener(bClickListenerQuitter);
 
@@ -71,18 +74,10 @@ public class ProfilUtilisateur extends AppCompatActivity {
             txtViewPrenom.setText(utilisateur.getPrenom());
         }
 
-        /*BtnSport1 = (Button) findViewById(R.id.BtnSport1);
-        BtnSport1.setOnClickListener(bClickListenerSport);
-
-        BtnSport2 = (Button) findViewById(R.id.BtnSport2);
-        BtnSport2.setOnClickListener(bClickListenerSport);
-
-        BtnSport3 = (Button) findViewById(R.id.BtnSport3);
-        BtnSport3.setOnClickListener(bClickListenerSport);*/
-
 
         // Recuperation de la liste des sport dans la  base de données
-        String requestUrl = base_url + "/Projet_Fin_Formation/api/webServiceSport"; // params[0]
+        String requestUrl = GlobalVariables.getBaseUrl() + GlobalVariables.getApp_name()
+                            +"webServiceSport"; // params[0]
         String method = "GET"; // params[1]
 
         //  Toast.makeText(ProfilUtilisateur.this, "Sauvegarde en cours", Toast.LENGTH_SHORT).show();
@@ -118,58 +113,43 @@ public class ProfilUtilisateur extends AppCompatActivity {
                 Log.d("CODE", "" + mListe);
                 Log.d("CODE", "" + res);
 
-              /*  BtnSport1.setText(mListe.get(0).getNom());
-                BtnSport2.setText(mListe.get(1).getNom());
-                BtnSport3.setText(mListe.get(2).getNom());*/
-
             }
 
         }
     };
+
+    // IMC
+    private View.OnClickListener bClickListenerIMC = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(v.getContext(), ImcFormulaire.class);
+            Log.d("CODE", "" + utilisateur);
+            i.putExtra("userGsonString", gs.toJson(utilisateur));
+            startActivity(i);
+        }
+    };
+
+
+    // Affiche la liste des performances
+    private View.OnClickListener bClickListenerbtnListePerf = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(getApplicationContext(), ListePerformance.class);
+            Log.d("CODE", "" + utilisateur.getId().toString());
+            i.putExtra("idGson", utilisateur.getId().toString());
+            startActivity(i);
+
+        }
+    };
+
 
     // Fermeture du formulaire
     private View.OnClickListener bClickListenerQuitter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
 
         }
     };
-
-    // Sport = course à pied, ouverture de l'activité
-/*    private View.OnClickListener bClickListenerSport = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(v.getContext(), PerformanceActivity.class);
-            i.putExtra("userGsonSting", gs.toJson(utilisateur));
-            switch (v.getId()) {
-                case R.id.BtnSport1:
-                   i.putExtra("sportGson", gs.toJson(mListe.get(0)));
-                    break;
-                case R.id.BtnSport2:
-                    i.putExtra("sportGson", gs.toJson(mListe.get(1)));
-                    break;
-                case R.id.BtnSport3:
-                    i.putExtra("sportGson", gs.toJson(mListe.get(2)));
-                    break;
-            }
-
-            startActivity(i);
-        }
-                };*/
-
-
-
-            // IMC
-            private View.OnClickListener bClickListenerIMC = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(), ImcFormulaire.class);
-                    i.putExtra("userGsonSting", gs.toJson(utilisateur));
-                    startActivity(i);
-                }
-            };
-
-        }
-
+}

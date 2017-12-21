@@ -24,21 +24,6 @@ public class Utilisateur {
     // Constructeurs
 
 
-    public Utilisateur(String nom, String prenom, String email, String username, String passWord,
-                       String dateNaiss, double taille, double poids, List<Activite> activites,
-                       List<Utilisateur> listAmi) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.username = username;
-        this.passWord = passWord;
-        this.dateNaiss = dateNaiss;
-        this.taille = taille;
-        this.poids = poids;
-        this.activites = activites;
-        this.listAmi = listAmi;
-    }
-
     public Utilisateur(Long id, String nom, String prenom, String email, String username, String passWord,
                        String dateNaiss, double taille, double poids) {
         this.id = id;

@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            String requestUrl = base_url + "/Projet_Fin_Formation/api/utilisateurPassWord"; // params[0]
+            String requestUrl = GlobalVariables.getBaseUrl() + GlobalVariables.getApp_name()
+                                + "webServiceUtilisateur/findByEmail"; // params[0]
             String method = "POST"; // params[1]
 
             Toast.makeText(MainActivity.this, "Connexion en cours", Toast.LENGTH_SHORT).show();

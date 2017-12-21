@@ -24,7 +24,6 @@ public class ImcFormulaire extends AppCompatActivity {
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +48,8 @@ public class ImcFormulaire extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String userGsonSting = extras.getString("userGsonSting");
-            utilisateur = gs.fromJson(userGsonSting, Utilisateur.class);
+            String userGsonString = extras.getString("userGsonString");
+            utilisateur = gs.fromJson(userGsonString, Utilisateur.class);
             txtViewNom.setText(utilisateur.getNom());
             txtViewPrenom.setText(utilisateur.getPrenom());
             editTxtTaille.setText(String.valueOf(utilisateur.getTaille()));
@@ -58,6 +57,7 @@ public class ImcFormulaire extends AppCompatActivity {
 
             Double imc = utilisateur.calculImc(utilisateur.getTaille(), utilisateur.getPoids());
             txtViewImc.setText(String.valueOf(imc));
+
         }
     }
 
@@ -80,7 +80,8 @@ public class ImcFormulaire extends AppCompatActivity {
 
         Toast.makeText(ImcFormulaire.this, "Sauvegarde en cours", Toast.LENGTH_SHORT).show();
 
-        String requestUrl = base_url + "/Projet_Fin_Formation/api/utilisateurCreate"; // params[0]
+        String requestUrl =GlobalVariables.getBaseUrl() + GlobalVariables.getApp_name()
+                            +"webServiceUtilisateur"; // params[0]
         String method = "PUT"; // params[1]
 
         try {
@@ -134,7 +135,7 @@ public class ImcFormulaire extends AppCompatActivity {
                             editTxtTaille.setText(String.valueOf(utilisateur.getTaille()));
                             editTxtPoids.setText(String.valueOf(utilisateur.getPoids()));
                             Intent i = new Intent(getBaseContext(), ProfilUtilisateur.class);
-                            i.putExtra("userGsonSting", gs.toJson(utilisateur));
+                            i.putExtra("userGsonString", gs.toJson(utilisateur));
                             startActivity(i);
                         }
                     });
@@ -175,7 +176,7 @@ public class ImcFormulaire extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         Intent i = new Intent(getBaseContext(), ProfilUtilisateur.class);
-                        i.putExtra("userGsonSting", gs.toJson(utilisateur));
+                        i.putExtra("userGsonString", gs.toJson(utilisateur));
                         startActivity(i);
                     }
                 });

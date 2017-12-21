@@ -52,46 +52,21 @@
             android:layout_weight="1"
             android:text="IMC"
             tools:text="IMC" />
+        <Button
+            android:id="@+id/btnListePerf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Liste des performances" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/layout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_below="@+id/layout2"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="28dp">
-
-        <Button
-            android:id="@+id/BtnSport1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/BtnSport2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/BtnSport3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout3"
+        android:layout_below="@+id/layout2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
         android:text="Fermer"
         tools:text="Fermer" />
 

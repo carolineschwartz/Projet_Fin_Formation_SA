@@ -37,7 +37,6 @@ public class PerformanceActivity extends AppCompatActivity {
     private Activite activite;
     private Sport sport;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
 
     private long time = 0;
     private long timeFinal = 0;
@@ -77,6 +76,7 @@ public class PerformanceActivity extends AppCompatActivity {
         btnClose.setOnClickListener(bClickListenerClose);
         btnSave.setOnClickListener(bClickListenerSave);
 
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String userGsonString = extras.getString("userGsonString");
@@ -90,6 +90,7 @@ public class PerformanceActivity extends AppCompatActivity {
         }
 
     }
+
 
 
     // Calcul calorie perdues
@@ -113,7 +114,7 @@ public class PerformanceActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             Intent i = new Intent(v.getContext(), ProfilUtilisateur.class);
-            i.putExtra("userGsonSting", gs.toJson(utilisateur));
+            i.putExtra("userGsonString", gs.toJson(utilisateur));
             startActivity(i);
         }
     };
@@ -137,7 +138,8 @@ public class PerformanceActivity extends AppCompatActivity {
 
 
             Toast.makeText(PerformanceActivity.this, "Sauvegarde en cours", Toast.LENGTH_SHORT).show();
-            String requestUrl = base_url + "/Projet_Fin_Formation/api/activiteWebService"; // params[0]
+            String requestUrl = GlobalVariables.getBaseUrl() + GlobalVariables.getApp_name()
+                                + "webServiceActivite/create"; // params[0]
 
             String method = "POST"; // params[1]
 

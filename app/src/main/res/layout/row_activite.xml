@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/textViewSport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPORT"
+            android:textColor="#2a5eff"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_below="@+id/layout1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp">
+
+        <LinearLayout
+            android:id="@+id/layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout2"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/TxtView"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="Le "
+                tools:text="Le " />
+
+            <TextView
+                android:id="@+id/TxtViewDate"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="date"
+                tools:text="date" />
+
+            <TextView
+                android:id="@+id/txtViewDur"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:text="Durée (s) :"
+                tools:text="Durée (s) :" />
+
+            <TextView
+                android:id="@+id/txtViewDuree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="12"
+                android:ems="10"
+                android:text=""
+                tools:text="80" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewCa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="Calories perdues (Kcal) :"
+                tools:text="Calories perdues (Kcal) :" />
+
+            <TextView
+                android:id="@+id/textViewCalorie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text=""
+                tools:text="200" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout4"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="Nombre :"
+                tools:text="Nombre :" />
+
+            <TextView
+                android:id="@+id/txtViewNb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text=""
+                tools:text="5" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

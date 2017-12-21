@@ -30,7 +30,6 @@ public class FormulaireDonnees extends AppCompatActivity {
 
     private Utilisateur utilisateur;
     private Gson gs = new Gson();
-    private String base_url = "http://192.168.137.1:8080";
 
 
     @Override
@@ -78,7 +77,8 @@ public class FormulaireDonnees extends AppCompatActivity {
         public void onClick(View v) {
 
             Toast.makeText(FormulaireDonnees.this, "Inscription en cours", Toast.LENGTH_SHORT).show();
-            String requestUrl = base_url + "/Projet_Fin_Formation/api/utilisateurCreate"; // params[0]
+            String requestUrl = GlobalVariables.getBaseUrl() + GlobalVariables.getApp_name()
+                                    + "webServiceUtilisateur"; // params[0]
             String method = "POST"; // params[1]
 
             if (editTxtMail.getText().toString().isEmpty()) {

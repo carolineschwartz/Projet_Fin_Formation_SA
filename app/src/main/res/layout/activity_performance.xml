@@ -29,9 +29,9 @@
         android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_below="@+id/layout1"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtViewNom"
@@ -66,11 +66,11 @@
         android:id="@+id/layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/layout2"
-        android:layout_alignParentStart="true">
+        android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Chronometer
             android:id="@+id/chrono"
@@ -79,7 +79,7 @@
             android:background="#000"
             android:padding="10dp"
             android:textColor="#f00"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnStart"
@@ -102,24 +102,21 @@
             android:onClick="resetChronometer"
             android:text="Reset" />
 
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="29dp"
         android:layout_below="@+id/layout3"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/BtnCalorie"
             android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:text="Caluler les calories perdues (Kcal)"
-            android:layout_weight="0.26" />
+            android:layout_weight="0.26"
+            android:text="Caluler les calories perdues (Kcal)" />
 
         <TextView
             android:id="@+id/txtViewCalorieCalculee"
@@ -128,28 +125,33 @@
             android:layout_weight="0.46"
             android:text="Caloriecalculee"
             android:textSize="18sp"
-            tools:text="Caloriecalculee" />
+            tools:text="" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layout5"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sauvegarder la performance"
-        android:layout_marginTop="38dp"
         android:layout_below="@+id/layout4"
-        android:layout_centerHorizontal="true" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sauvegarder la performance" />
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fermer"
-        android:layout_below="@+id/btnSave"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
-
+        android:layout_alignStart="@+id/layout1"
+        android:layout_below="@+id/layout5"
+        android:text="Fermer" />
 
 
 </RelativeLayout>
