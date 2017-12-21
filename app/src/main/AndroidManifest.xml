@@ -21,7 +21,8 @@
         <activity android:name=".FormulaireDonnees" />
         <activity android:name=".ProfilUtilisateur" />
         <activity android:name=".ImcFormulaire" />
-        <activity android:name=".PerformanceActivity"></activity>
+        <activity android:name=".PerformanceActivity" />
+        <activity android:name=".VideoActivity"></activity>
     </application>
 
 </manifest>

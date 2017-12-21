@@ -62,6 +62,7 @@ public class HttpAsynTask extends AsyncTask<String, Void, String> {
         HttpURLConnection connection = null;
         StringBuilder result = null;
 
+
         Log.d("CODE", "" +  nom);
 
         try {
@@ -83,6 +84,7 @@ public class HttpAsynTask extends AsyncTask<String, Void, String> {
             // code HTTP 200 404 500 ...
             int codeResponse = connection.getResponseCode();
 
+            Log.d("url",url);
             Log.d("CODE", "" + codeResponse);
 
             result = new StringBuilder();

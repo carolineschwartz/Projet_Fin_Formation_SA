@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            String requestUrl = base_url + getApp_name()+"api/webServiceUtilisateur/findByMail"; // params[0]
+            String requestUrl = base_url + getApp_name()+"api/webServiceUtilisateur";// /findByMail"; // params[0]
             String method = "POST"; // params[1]
 
             Toast.makeText(MainActivity.this, "Connexion en cours", Toast.LENGTH_SHORT).show();

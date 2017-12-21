@@ -80,7 +80,7 @@ public class FormulaireDonnees extends AppCompatActivity {
         public void onClick(View v) {
 
             Toast.makeText(FormulaireDonnees.this, "Inscription en cours", Toast.LENGTH_SHORT).show();
-            String requestUrl = base_url + getApp_name()+"api/utilisateurCreate"; // params[0]
+            String requestUrl = base_url + getApp_name()+"api/webServiceUtilisateur"; // params[0]
             String method = "POST"; // params[1]
 
             if (editTxtMail.getText().toString().isEmpty()) {

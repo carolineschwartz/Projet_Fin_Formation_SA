@@ -46,7 +46,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.androidclient.VideoActivity;
+//import com.example.androidclient.VideoActivity;
 import com.example.androidclient.http.AsyncResponse;
 import com.example.androidclient.http.HttpAsynTask;
 import com.example.androidclient.http.HttpAsynTaskSport;
@@ -136,7 +136,7 @@ public class SportAdapter extends BaseAdapter {
         btnNomSport.setOnClickListener(bClickListenerSport);
         btnNomSport.setText("Performances");
         btnVideoSport = (Button) linearLayout.findViewById(R.id.btnVideoSport);
-        btnVideoSport.setOnClickListener(bClicListenerVideo);
+       // btnVideoSport.setOnClickListener(bClicListenerVideo);
         btnVideoSport.setText("Videos");
         text_view_sport_name= (TextView) linearLayout.findViewById(R.id.text_view_sport_name);
         text_view_sport_name.setText(currentSport.getNom());
@@ -154,7 +154,7 @@ public class SportAdapter extends BaseAdapter {
             v.getContext().startActivity(i);
         }
     };
-
+/*
     private View.OnClickListener bClicListenerVideo = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
@@ -162,7 +162,7 @@ public class SportAdapter extends BaseAdapter {
             i.putExtra("sportGson", gs.toJson(currentSport));
             view.getContext().startActivity(i);
         }
-    };
+    };*/
 }
 
 
