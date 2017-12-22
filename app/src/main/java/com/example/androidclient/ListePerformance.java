@@ -51,7 +51,9 @@ private Button   btnClose;
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String idGson = extras.getString("idGson");
+            String userGsonString = extras.getString("userGsonString");
+            utilisateur = gs.fromJson(userGsonString, Utilisateur.class);
+            String idGson = utilisateur.getId().toString();
 
             // Recuperation de la liste des activités dans la  base de données
             String requestUrl = GlobalVariables.getBaseUrl() + GlobalVariables.getApp_name()
@@ -82,18 +84,16 @@ private Button   btnClose;
 
             if (res.isEmpty()) {
 
+                Log.d("CODE", "" + "result AsyncResponse empty ");
 
             } else {
+
 
                 /*Type listType = new TypeToken<ArrayList<Activite>>() {
                 }.getType();*/
                 mListe = new Gson().fromJson(res, listType);
-
                 adapter = new ActiviteAdapter(ListePerformance.this, mListe);
                 ListViewActivite.setAdapter(adapter);
-
-                Log.d("CODE", "" + mListe);
-                Log.d("CODE", "" + res);
 
             }
 
@@ -106,7 +106,8 @@ private Button   btnClose;
     private View.OnClickListener bClickListenerQuitter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent(getApplicationContext(), ProfilUtilisateur.class);
+            Intent i = new Intent(v.getContext(), ProfilUtilisateur.class);
+            i.putExtra("userGsonString", gs.toJson(utilisateur));
             startActivity(i);
 
         }

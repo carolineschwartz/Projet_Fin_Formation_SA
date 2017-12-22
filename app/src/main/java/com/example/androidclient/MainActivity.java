@@ -2,6 +2,7 @@ package com.example.androidclient;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -96,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(getBaseContext(), ProfilUtilisateur.class);
                 i.putExtra("userGsonString",res );
                 startActivity(i);
+               /* SharedPreferences settings = getSharedPreferences("USER_CONFIG", 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("userGsonString", res);
+                editor.commit();
+*/
+
             }
 
         }

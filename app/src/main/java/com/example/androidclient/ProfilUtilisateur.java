@@ -1,32 +1,26 @@
 package com.example.androidclient;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidclient.http.AsyncResponse;
 import com.example.androidclient.http.HttpAsynTask;
-import com.example.androidclient.http.HttpAsynTaskSport;
 import com.example.androidclient.modele.Sport;
 import com.example.androidclient.modele.SportAdapter;
 import com.example.androidclient.modele.Utilisateur;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProfilUtilisateur extends AppCompatActivity {
@@ -68,6 +62,11 @@ public class ProfilUtilisateur extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+
+            /*SharedPreferences settings = getSharedPreferences("USER_CONFIG", 0);
+            String userGsonString = settings.getString("userGsonString", "");
+            System.out.println("Test recup getSHared " + userGsonString);*/
+
             String userGsonString = extras.getString("userGsonString");
             utilisateur = gs.fromJson(userGsonString, Utilisateur.class);
             txtViewNom.setText(utilisateur.getNom());
@@ -123,9 +122,9 @@ public class ProfilUtilisateur extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(v.getContext(), ImcFormulaire.class);
-            Log.d("CODE", "" + utilisateur);
             i.putExtra("userGsonString", gs.toJson(utilisateur));
             startActivity(i);
+
         }
     };
 
@@ -134,9 +133,8 @@ public class ProfilUtilisateur extends AppCompatActivity {
     private View.OnClickListener bClickListenerbtnListePerf = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent(getApplicationContext(), ListePerformance.class);
-            Log.d("CODE", "" + utilisateur.getId().toString());
-            i.putExtra("idGson", utilisateur.getId().toString());
+            Intent i = new Intent(v.getContext(), ListePerformance.class);
+            i.putExtra("userGsonString", gs.toJson(utilisateur));
             startActivity(i);
 
         }

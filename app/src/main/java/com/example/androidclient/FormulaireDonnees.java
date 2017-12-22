@@ -62,7 +62,6 @@ public class FormulaireDonnees extends AppCompatActivity {
     private View.OnClickListener retourClickListener = new View.OnClickListener() {
 
         @Override
-
         public void onClick(View v) {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
@@ -158,7 +157,6 @@ public class FormulaireDonnees extends AppCompatActivity {
                 });
                 alertDialog.show();
             } else {
-
                 Intent i = new Intent(getBaseContext(), ProfilUtilisateur.class);
                 i.putExtra("userGsonString", res);
                 startActivity(i);

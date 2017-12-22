@@ -13,53 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.support.v7.app.AppCompatActivity;
 
 
-import com.example.androidclient.FormulaireDonnees;
 import com.example.androidclient.PerformanceActivity;
-import com.example.androidclient.ProfilUtilisateur;
 import com.example.androidclient.R;
 
 import java.util.ArrayList;
 
 
-
-
-
-
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.androidclient.VideoActivity;
-import com.example.androidclient.http.AsyncResponse;
-import com.example.androidclient.http.HttpAsynTask;
-import com.example.androidclient.http.HttpAsynTaskSport;
-import com.example.androidclient.modele.Sport;
-import com.example.androidclient.modele.Utilisateur;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
 
 
 public class SportAdapter extends BaseAdapter {

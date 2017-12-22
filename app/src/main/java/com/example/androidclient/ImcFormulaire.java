@@ -94,7 +94,7 @@ public class ImcFormulaire extends AppCompatActivity {
         }
     }
 
-    // Fermer le formulaire IMC et sauvegarder les données poids et taille
+    // sauvegarder les données poids et taille
     private View.OnClickListener bClickListenerSave = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

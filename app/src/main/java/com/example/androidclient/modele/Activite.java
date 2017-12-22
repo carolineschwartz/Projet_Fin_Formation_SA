@@ -18,11 +18,6 @@ public class Activite {
     // Constructeurs
 
 
-    public Activite(double duree, String date) {
-        this.duree = duree;
-        this.date = date;
-    }
-
     public Activite(double duree, String date, Sport sport, Utilisateur utilisateur, Double caloriePerdues) {
         this.duree = duree;
         this.date = date;
@@ -31,7 +26,7 @@ public class Activite {
         this.caloriePerdues=caloriePerdues;
     }
 
-    public Activite(double duree, int nombre, String date, Sport sport, Utilisateur utilisateur,
+    public Activite(double duree, int nombre, String date, Sport sport,Utilisateur utilisateur,
                     Double caloriePerdues) {
         this.duree = duree;
         this.nombre = nombre;
@@ -41,11 +36,6 @@ public class Activite {
         this.caloriePerdues=caloriePerdues;
     }
 
-    public Activite(double duree, int nombre, String date) {
-        this.duree = duree;
-        this.nombre = nombre;
-        this.date = date;
-    }
 
 
     // getter et setter
@@ -109,9 +99,12 @@ public class Activite {
     @Override
     public String toString() {
         return "Activite{" +
-                "duree=" + duree +
+                "id=" + id +
+                ", duree=" + duree +
                 ", nombre=" + nombre +
                 ", date='" + date + '\'' +
+                ", sport=" + sport +
+                ", caloriePerdues=" + caloriePerdues +
                 '}';
     }
 }

@@ -7,17 +7,19 @@
     tools:context="com.example.androidclient.ListePerformance">
 
 
-    <ListView
-        android:id="@+id/ListViewActivite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ListViewActivite"
         android:layout_centerHorizontal="true"
         android:text="Fermer" />
+
+    <ListView
+        android:id="@+id/ListViewActivite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnClose"/>
+
 
 </RelativeLayout>

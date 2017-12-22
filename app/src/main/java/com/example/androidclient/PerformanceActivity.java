@@ -112,7 +112,6 @@ public class PerformanceActivity extends AppCompatActivity {
     private View.OnClickListener bClickListenerClose = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             Intent i = new Intent(v.getContext(), ProfilUtilisateur.class);
             i.putExtra("userGsonString", gs.toJson(utilisateur));
             startActivity(i);
